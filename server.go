@@ -170,6 +170,8 @@ func newServer(ifaces []net.Interface) (*Server, error) {
 		// No supported interface left.
 		return nil, fmt.Errorf("No supported interface")
 	}
+	// Increase the TTL
+	ipv4conn.SetMulticastTTL(25)
 
 	s := &Server{
 		ipv4conn:       ipv4conn,
